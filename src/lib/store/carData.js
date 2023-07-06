@@ -407,6 +407,7 @@ export const data = [
     type: "Diesel",
     km: 10000,
     city: "Mumbai",
+    img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/96443/5-series-exterior-right-front-three-quarter-4.jpeg?q=75",
   },
   {
     id: 38,
@@ -417,6 +418,7 @@ export const data = [
     type: "Diesel",
     km: 12000,
     city: "Bangalore",
+    img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/110503/x3-facelift-exterior-right-front-three-quarter.jpeg?isig=0&q=75",
   },
   {
     id: 39,
@@ -427,6 +429,7 @@ export const data = [
     type: "Diesel",
     km: 15000,
     city: "Chennai",
+    img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/51529/x5-m-exterior-right-front-three-quarter.jpeg?q=75",
   },
   {
     id: 40,
@@ -437,6 +440,7 @@ export const data = [
     type: "Petrol",
     km: 18000,
     city: "Kolkata",
+    img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/132513/new-7-series-exterior-right-front-three-quarter-2.jpeg?isig=0&q=75",
   },
   {
     id: 41,
@@ -447,6 +451,7 @@ export const data = [
     type: "Petrol",
     km: 8000,
     city: "Delhi",
+    img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/47030/new-a3-exterior-right-front-three-quarter-6.jpeg?isig=0&q=75",
   },
   {
     id: 42,
@@ -457,6 +462,7 @@ export const data = [
     type: "Diesel",
     km: 10000,
     city: "Mumbai",
+    img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/51909/a4-exterior-right-front-three-quarter-2.jpeg?q=75",
   },
   {
     id: 43,
@@ -467,6 +473,7 @@ export const data = [
     type: "Diesel",
     km: 12000,
     city: "Bangalore",
+    img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/141373/q3-sportback-exterior-right-front-three-quarter.jpeg?isig=0&q=75",
   },
   {
     id: 44,
@@ -477,6 +484,7 @@ export const data = [
     type: "Diesel",
     km: 15000,
     city: "Chennai",
+    img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/53591/q5-facelift-exterior-right-front-three-quarter-3.jpeg?isig=0&q=75",
   },
   {
     id: 45,
@@ -487,6 +495,7 @@ export const data = [
     type: "Petrol",
     km: 18000,
     city: "Kolkata",
+    img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/39472/a6-exterior-right-front-three-quarter.jpeg?q=75",
   },
   {
     id: 46,
@@ -497,6 +506,7 @@ export const data = [
     type: "Petrol",
     km: 8000,
     city: "Delhi",
+    img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/149525/a-class-limousine-exterior-right-front-three-quarter-2.jpeg?isig=0&q=75",
   },
   {
     id: 47,
@@ -507,6 +517,7 @@ export const data = [
     type: "Diesel",
     km: 10000,
     city: "Mumbai",
+    img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/116201/new-c-class-exterior-right-front-three-quarter-2.jpeg?isig=0&q=75",
   },
   {
     id: 48,
@@ -517,6 +528,7 @@ export const data = [
     type: "Diesel",
     km: 12000,
     city: "Bangalore",
+    img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/47336/e-class-exterior-right-front-three-quarter.jpeg?q=75",
   },
   {
     id: 49,
@@ -527,6 +539,7 @@ export const data = [
     type: "Diesel",
     km: 15000,
     city: "Chennai",
+    img: "https://imgd.aeplcdn.com/370x208/cw/ec/36137/MercedesBenz-GLE-New-Exterior-169843.jpg?wm=0&q=75",
   },
   {
     id: 50,
@@ -537,5 +550,6 @@ export const data = [
     type: "Petrol",
     km: 18000,
     city: "Kolkata",
+    img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/48067/s-class-exterior-right-front-three-quarter-3.jpeg?q=75",
   },
 ];
