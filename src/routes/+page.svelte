@@ -1,3 +1,9 @@
-<h1 class="text-3xl underline  text-red-800 font-bold ">
-  Hello world!
-</h1>
+<script>
+  import Sidebar from "../lib/components/sidebar/Sidebar.svelte";
+  import Content from "../lib/components/content/Content.svelte";
+</script>
+
+<div class="flex bg-[#0f0b0b]">
+  <Sidebar />
+  <Content />
+</div>
