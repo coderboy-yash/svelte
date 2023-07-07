@@ -3,7 +3,7 @@
   import Content from "../lib/components/content/Content.svelte";
 </script>
 
-<div class="flex bg-[#0f0b0b]">
+<div class="flex">
   <Sidebar />
   <Content />
 </div>

@@ -1,3 +1,5 @@
+import { writable } from "svelte/store";
+
 export const data = [
   {
     id: 1,
@@ -553,3 +555,8 @@ export const data = [
     img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/48067/s-class-exterior-right-front-three-quarter-3.jpeg?q=75",
   },
 ];
+export const brand = writable("");
+export const activeBrand = (getBrand) => {
+  // console.log(getBrand);
+  brand.set(getBrand);
+};
