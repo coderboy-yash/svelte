@@ -1,7 +1,18 @@
 <script>
+  // form data
+  import Form from "./Form.svelte";
+
+  let data1 = { name: "", length: 12, type: "refubrished" };
+  let submittedData = null;
+  // ///////////////////////////////
   import SidebarCard from "./SidebarCard.svelte";
   import { data } from "../../store/carData.js";
   import search from "../../../assets/search.png";
+
+  import Modal from "./Modal.svelte";
+
+  let showModal = false;
+
   const brandArray = data.map((car) => car.brand);
   const brands = [...new Set(brandArray)];
   let inputValue = "";
@@ -60,11 +71,20 @@
       <SidebarCard {brand} />
     {/each}
   {/if}
-  <button
+  <!-- <button
     class="m-4 flex justify-center rounded-xl bg-yellow-400 p-4 text-xl font-semibold text-gray-900"
   >
     Add new</button
+  > -->
+  <button
+    class="mx-16 h-16 w-16 rounded-2xl border-4 border-yellow-300 text-6xl font-bold text-yellow-400"
+    on:click={() => (showModal = true)}
   >
+    <div class="mb-20">+</div>
+  </button>
+  <Modal bind:showModal>
+    <Form data={data1} onSubmit={(data) => (submittedData = data)} />
+  </Modal>
 </div>
 
 <style>

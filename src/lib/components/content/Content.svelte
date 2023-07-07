@@ -1,20 +1,47 @@
 <script>
   import ContentCard from "./ContentCard.svelte";
   import { data, brand } from "../../store/carData.js";
+  import search from "../../../assets/search.png";
   import { onDestroy } from "svelte";
-
+  let inputValue = "";
+  let brandArray = [];
+  function handleInput(event) {
+    inputValue = event.target.value;
+    // console.log(inputValue);
+  }
+  function handleClick(name) {
+    brandArray = data.filter((car) => {
+      if (name === "") return false;
+      return car.name.toLowerCase().includes(name.toLowerCase());
+    });
+  }
   const unsubscribe = brand.subscribe((value) => {
-    console.log(value);
+    console.log(data, value);
+
+    brandArray = data.filter((car) => car.brand == value);
+    console.log(brandArray);
   });
-  // onDestroy(() => {
-  //   unsubscribe();
-  // });
 </script>
 
-<div
-  class="flex h-fit flex-1 flex-wrap items-end justify-center gap-6 bg-slate-100 p-4"
->
-  {#each data as car}
-    <ContentCard {car} key={car.id} />
-  {/each}
+<div class="flex flex-1 flex-col">
+  <div class="-z-10 m-4 flex justify-center">
+    <input
+      type="text"
+      placeholder="search by car name"
+      on:input={handleInput}
+      bind:value={inputValue}
+      class="-skew-x-12 border-2 border-yellow-300 bg-black p-2 text-2xl text-white"
+    />
+    <button
+      on:click={handleClick(inputValue)}
+      class="-skew-x-12 bg-yellow-400 p-4 text-2xl font-semibold"
+    >
+      Search
+    </button>
+  </div>
+  <div class="flex flex-wrap items-end justify-center gap-6 bg-yellow-200 p-4">
+    {#each brandArray as car}
+      <ContentCard {car} key={car.id} />
+    {/each}
+  </div>
 </div>
