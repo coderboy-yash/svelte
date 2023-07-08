@@ -48,22 +48,6 @@
   //   import placeholder from "./Input.svelte";
   import Select from "./Select.svelte";
   import Button from "./Button.svelte";
-  // import UploadWidget from "../UploadWidget.svelte";
-
-  // console.log(image);
-
-  //   file input
-  // let files;
-
-  // $: if (files) {
-  //   // Note that `files` is of type `FileList`, not an Array:
-  //   // https://developer.mozilla.org/en-US/docs/Web/API/FileList
-  // //   console.log(files);
-
-  // //   for (const file of files) {
-  // //     console.log(`${file.name}: ${file.size} bytes`);
-  // //   }
-  // // }
 
   export let data = {};
   export let onSubmit = () => {};
@@ -135,7 +119,12 @@
 </script>
 
 <div class="form">
-  <fieldset class="fieldset">
+  <div
+    class="mx-auto flex justify-center bg-yellow-400 p-4 text-2xl font-bold capitalize text-black"
+  >
+    add manufacturer
+  </div>
+  <fieldset class="fieldset flex flex-col gap-4">
     <!-- <legend>form</legend> -->
     <Input
       type="text"
@@ -194,8 +183,13 @@
       on:blur={() => (touchedFields.name = true)}
       error={errors.name}
     />
-    <label for="avatar">Upload a picture:</label>
-    <button on:click|preventDefault={handleClick}> Upload an image </button>
+
+    <button
+      class=" w-48 rounded-xl bg-slate-300 p-4 text-xl font-bold text-gray-600 hover:bg-slate-500 hover:text-white"
+      on:click|preventDefault={handleClick}
+    >
+      Upload an image
+    </button>
 
     <!-- <UploadWidget /> -->
     <!-- <input

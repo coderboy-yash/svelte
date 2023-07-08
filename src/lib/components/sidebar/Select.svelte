@@ -1,35 +1,36 @@
 <script>
   export let value;
-  export let error = '';
-  export let label = '';
+  export let error = "";
+  export let label = "";
 </script>
 
 <label class="block">
-	{#if label}
-		<span class="block">{label}</span>
-	{/if}
+  {#if label}
+    <span class="block">{label}</span>
+  {/if}
 
-	<select class="block select" class:error bind:value on:blur>
-		<slot />
-	</select>
+  <select class="select block" class:error bind:value on:blur>
+    <slot />
+  </select>
 
-	{#if error}
-		<span class="block error-text">{error}</span>
-	{/if}
+  {#if error}
+    <span class="error-text block">{error}</span>
+  {/if}
 </label>
 
 <style>
-	.select {
-		border: 1px solid #ddd;
-		border-radius: 4px;
-		padding: 6px 10px 6px 4px;
-	}
+  .select {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 6px 10px 6px 4px;
+    width: 10rem;
+  }
 
-	.block {
+  .block {
     display: block;
   }
 
-	.error {
+  .error {
     border-color: #f55;
   }
 

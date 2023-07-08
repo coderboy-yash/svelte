@@ -6,6 +6,7 @@
   import { onDestroy } from "svelte";
   let inputValue = "";
   let brandArray = [];
+  export let open = false;
   function handleInput(event) {
     inputValue = event.target.value;
     // console.log(inputValue);
@@ -17,7 +18,7 @@
   });
   function handleClick(name) {
     brandArray = allCars.filter((car) => {
-      if (name === "") return false;
+      if (name === "") return open;
       return car.name.toLowerCase().includes(name.toLowerCase());
     });
   }
@@ -47,7 +48,8 @@
       Search
     </button>
   </div>
-  <div class="flex flex-wrap items-end justify-center gap-6 bg-yellow-200 p-4">
+
+  <div class="flex flex-wrap items-end justify-center gap-6">
     {#each brandArray as car}
       <ContentCard {car} key={car.id} />
     {/each}

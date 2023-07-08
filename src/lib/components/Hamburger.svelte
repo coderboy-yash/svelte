@@ -2,7 +2,7 @@
   export let open = false;
 </script>
 
-<div class="relative h-screen w-[4rem] bg-[#363740]">
+<div class="fixed z-40 h-screen w-[4rem] bg-yellow-400">
   <button
     class="absolute left-[1rem] top-[2rem] mr-4 cursor-pointer border-none text-gray-200 hover:text-gray-500 focus:outline-none"
     class:open
@@ -38,7 +38,8 @@
   }
 
   .open svg {
-    transform: scale(0.9);
+    color: rgb(83, 81, 81);
+    transform: scale(0.9) translate(20px);
   }
 
   .open #top {

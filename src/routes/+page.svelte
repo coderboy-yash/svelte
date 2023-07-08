@@ -8,5 +8,7 @@
 <div class="flex">
   <Sidebar bind:open />
   <Hamburger bind:open />
-  <Content />
+  <div class="mx-auto flex">
+    <Content bind:open />
+  </div>
 </div>

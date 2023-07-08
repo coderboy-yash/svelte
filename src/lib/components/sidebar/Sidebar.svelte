@@ -1,13 +1,11 @@
 <script>
-  // form data
   import Form from "./Form.svelte";
 
-  // import { subscribe } from "../store/cart.js";
   import { onMount } from "svelte";
 
   let data1 = { name: "", length: 12, type: "refubrished" };
   let submittedData = null;
-  // ///////////////////////////////
+
   import SidebarCard from "./SidebarCard.svelte";
   import { data } from "../../store/carData.js";
   import search from "../../../assets/search.png";
@@ -46,19 +44,6 @@
     });
   }
 
-  // function handleClick() {
-  //   console.log("fdgdg", inputValue);
-  //   getBrand = brands.filter((brand) => {
-  //     console.log(inputValue);
-  //     if (inputValue === "") {
-  //       return false;
-  //     }
-
-  //     brand.toLowerCase().includes(inputValue.toLowerCase());
-  //   });
-  //   console.log(brands, getBrand);
-  // }
-
   $: getBrand =
     inputValue === ""
       ? []
@@ -66,16 +51,20 @@
           brand.toLowerCase().includes(inputValue.toLowerCase())
         );
 
-  // $: handleClick(), inputValue;
-
   function cleanup() {
     unsubscribe();
   }
-  export let open = false;
+  export let open = true;
 </script>
 
-<aside class:open class=" absolute h-screen w-[15%] bg-[#363740]">
-  <div class="  my-3 flex text-white">
+<!-- bg-[#363740]"  sticky top-32 z-30 h-[calc(100vh-128px)] w-52 overflow-auto overflow-x-hidden border-b-8 border-yellow-200 -->
+<!-- bg-[#363740]"  sticky top-32 z-30 h-[calc(100vh-128px)] w-52 overflow-auto overflow-x-hidden border-b-8 border-yellow-200 -->
+
+<aside
+  class:open
+  class="fixed z-30 ml-16 h-[calc(100vh-128px)] w-[15%] overflow-auto overflow-x-hidden bg-white"
+>
+  <div class="my-3 flex text-white">
     <input
       type="text"
       placeholder="search your brand"
@@ -91,11 +80,6 @@
     >
   </div>
 
-  <!-- {#if getBrand}
-    <p>{getBrand[0]}</p>
-  {:else}
-    <p>no brand matched</p>
-  {/if} -->
   {#if getBrand.length > 0}
     {#each getBrand as brand}
       <SidebarCard {brand} />
@@ -105,21 +89,15 @@
       <SidebarCard {brand} />
     {/each}
   {/if}
-  <!-- <button
-    class="m-4 flex justify-center rounded-xl bg-yellow-400 p-4 text-xl font-semibold text-gray-900"
-  >
-    Add new</button
-  > -->
+  <!--  -->
   <button
     class="mx-16 h-16 w-16 rounded-2xl border-4 border-yellow-300 text-6xl font-bold text-yellow-400"
     on:click={() => (showModal = true)}
   >
     <div class="mb-20">+</div>
   </button>
-  <!-- <Modal bind:showModal>
-    <Form data={data1} onSubmit={(data) => (submittedData = data)} />
-  </Modal> -->
-  <Modal title="Add Manufacturer" bind:open={showModal} class="z-50">
+
+  <Modal title="add your favourite" bind:open={showModal} class="z-50 ">
     <Form
       data={data1}
       onSubmit={(result) => {
@@ -160,11 +138,13 @@
   }
   aside {
     z-index: 20;
-    left: -100%;
+    left: -90%;
     transition: left 0.3s ease-in-out;
   }
 
   .open {
     left: 0;
+    bottom: 0;
+    /* position: sticky; */
   }
 </style>

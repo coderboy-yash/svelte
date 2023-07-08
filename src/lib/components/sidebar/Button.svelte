@@ -6,7 +6,7 @@
   .button {
     border-radius: 4px;
     border-color: #a0c0f0;
-    background-color: #facc15;
+    background-color: #eab308;
     color: #124;
     width: 20rem;
     font-weight: bold;
