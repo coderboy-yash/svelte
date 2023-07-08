@@ -9,7 +9,7 @@
   import { data } from "../../store/carData.js";
   import search from "../../../assets/search.png";
 
-  import Modal from "./Modal.svelte";
+  import { Modal } from "flowbite-svelte";
 
   let showModal = false;
 
@@ -82,8 +82,12 @@
   >
     <div class="mb-20">+</div>
   </button>
-  <Modal bind:showModal>
+  <!-- <Modal bind:showModal>
     <Form data={data1} onSubmit={(data) => (submittedData = data)} />
+  </Modal> -->
+  <Modal title="Add Manufacturer" bind:open={showModal}>
+    <Form data={data1} onSubmit={(data) => (submittedData = data)} />
+    <svelte:fragment slot="footer" />
   </Modal>
 </div>
 

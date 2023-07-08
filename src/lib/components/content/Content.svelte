@@ -15,20 +15,22 @@
       return car.name.toLowerCase().includes(name.toLowerCase());
     });
   }
+
+  $: handleClick(inputValue);
+
   const unsubscribe = brand.subscribe((value) => {
-    console.log(data, value);
+    // console.log(data, value);
 
     brandArray = data.filter((car) => car.brand == value);
-    console.log(brandArray);
+    // console.log(brandArray);
   });
 </script>
 
 <div class="flex flex-1 flex-col">
-  <div class="-z-10 m-4 flex justify-center">
+  <div class="m-4 flex justify-center">
     <input
       type="text"
       placeholder="search by car name"
-      on:input={handleInput}
       bind:value={inputValue}
       class="-skew-x-12 border-2 border-yellow-300 bg-black p-2 text-2xl text-white"
     />

@@ -4,6 +4,7 @@
   //   import placeholder from "./Input.svelte";
   import Select from "./Select.svelte";
   import Button from "./Button.svelte";
+  import UploadWidget from "../UploadWidget.svelte";
 
   //   file input
   let files;
@@ -23,10 +24,10 @@
 
   let name = data.name ?? "";
   let brand = data.brand ?? "";
-  let price = data.price ?? 20;
-  let year = data.year ?? "";
+  let price = data.price ?? 0;
+  let year = data.year ?? 2023;
   let type = data.type ?? "original";
-  let km = data.km ?? "";
+  let km = data.km ?? 0;
   let city = data.city ?? "";
   let img = data.img ?? "";
 
@@ -51,8 +52,20 @@
     if (touchedFields.name && name === "") {
       errors.name = "Name is required";
     }
-    if (touchedFields.length && length < 5) {
-      errors.length = "Length should be at least 5";
+    if (touchedFields.brand && brand === "") {
+      errors.brand = "brand is required";
+    }
+    if (touchedFields.price && price == 0) {
+      errors.price = "price is required ";
+    }
+    if (touchedFields.year && year <= 2023 && year >= 2005) {
+      errors.year = "enter a valid year after 2005 ";
+    }
+    if (touchedFields.km && km > 1) {
+      errors.year = "enter  valid kms ";
+    }
+    if (touchedFields.city && city === "") {
+      errors.city = "city is required";
     }
     if (
       touchedFields.type &&
@@ -98,17 +111,17 @@
       type="number"
       label="price in Lakhs"
       placeholder="23"
-      bind:value={length}
+      bind:value={price}
       on:blur={() => (touchedFields.length = true)}
       error={errors.length}
     />
-    <label for="avatar">Upload a picture:</label>
-    <input
-      accept="image/png, image/jpeg"
-      bind:files
-      id="avatar"
-      name="avatar"
-      type="file"
+    <Input
+      type="number"
+      label="year of purchase"
+      placeholder="23"
+      bind:value={year}
+      on:blur={() => (touchedFields.length = true)}
+      error={errors.length}
     />
     <Select
       label="Type"
@@ -119,6 +132,32 @@
       <option value="original">Petrol</option>
       <option value="refubrished">Diesel</option>
     </Select>
+    <Input
+      type="number"
+      label="km covered"
+      placeholder="23"
+      bind:value={km}
+      on:blur={() => (touchedFields.length = true)}
+      error={errors.length}
+    />
+    <Input
+      type="text"
+      placeholder="Kanpur"
+      label="city"
+      bind:value={city}
+      on:blur={() => (touchedFields.name = true)}
+      error={errors.name}
+    />
+    <label for="avatar">Upload a picture:</label>
+    <UploadWidget />
+    <!-- <input
+      accept="image/png, image/jpeg"
+      bind:files
+      id="avatar"
+      name="avatar"
+      type="file"
+    /> -->
+
     <Button on:click={validateAndSubmit}>ADD</Button>
     <!-- <div>
       <pre>
@@ -134,7 +173,7 @@
   }
 
   .fieldset > :global(:not(legend) + *) {
-    margin-top: 16px;
+    margin-top: 4px;
   }
 
   .fieldset {

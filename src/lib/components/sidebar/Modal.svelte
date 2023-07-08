@@ -16,7 +16,6 @@
     <div class="">Add Manufacturer</div>
     <button
       class=" mb-14 ml-14 h-8 w-8 rounded-full bg-black pb-1 text-lg text-yellow-400"
-      autofocus
       on:click={() => dialog.close()}>x</button
     >
   </div>

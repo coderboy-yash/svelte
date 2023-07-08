@@ -3,7 +3,7 @@
 </script>
 
 <div
-  class="sticky top-0 flex h-32 flex-wrap justify-between border-b-8 border-amber-500 bg-black text-yellow-500"
+  class="sticky top-0 z-10 flex h-32 flex-wrap justify-between border-b-8 border-amber-500 bg-black text-yellow-500"
 >
   <div>
     <div class="p-4 text-4xl font-bold">Car Bazzar</div>
