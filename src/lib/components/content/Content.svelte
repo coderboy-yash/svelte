@@ -1,6 +1,7 @@
 <script>
   import ContentCard from "./ContentCard.svelte";
-  import { data, brand } from "../../store/carData.js";
+  import { brand, data } from "../../store/carData.js";
+  // import data from "../../store/carData.js";
   import search from "../../../assets/search.png";
   import { onDestroy } from "svelte";
   let inputValue = "";
@@ -9,8 +10,13 @@
     inputValue = event.target.value;
     // console.log(inputValue);
   }
+
+  export let allCars = [];
+  data.subscribe((data) => {
+    allCars = data;
+  });
   function handleClick(name) {
-    brandArray = data.filter((car) => {
+    brandArray = allCars.filter((car) => {
       if (name === "") return false;
       return car.name.toLowerCase().includes(name.toLowerCase());
     });
@@ -21,13 +27,13 @@
   const unsubscribe = brand.subscribe((value) => {
     // console.log(data, value);
 
-    brandArray = data.filter((car) => car.brand == value);
+    brandArray = allCars.filter((car) => car.brand == value);
     // console.log(brandArray);
   });
 </script>
 
 <div class="flex flex-1 flex-col">
-  <div class="m-4 flex justify-center">
+  <div class=" z-0 m-4 flex justify-center">
     <input
       type="text"
       placeholder="search by car name"

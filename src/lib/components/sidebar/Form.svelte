@@ -1,23 +1,69 @@
 <script>
+  // cloudinary
+  import { onMount } from "svelte";
+
+  export let image = "hello";
+
+  let widget;
+
+  export let onUpload = (error, result, widget) => {
+    console.log("result", result.info.secure_url, "widget", widget);
+    // return result.info.secure_url;
+    image = result.info.secure_url;
+  };
+  // console.log(image);
+
+  const cldOptions = {
+    cloudName: "yash-911-cloud",
+    uploadPreset: "jh3pc02z",
+  };
+
+  function cldCallback(error, result) {
+    if (error || result.event === "success") {
+      onUpload && onUpload(error, result, widget);
+    }
+  }
+
+  onMount(() => {
+    function onIdle() {
+      if (!widget) {
+        widget = window.cloudinary.createUploadWidget(cldOptions, cldCallback);
+      }
+    }
+
+    "requestIdleCallback" in window
+      ? requestIdleCallback(onIdle)
+      : setTimeout(onIdle, 1);
+  });
+
+  function handleClick() {
+    if (widget) {
+      widget.open();
+    }
+  }
+
+  // ///////////////////
   import Form from "./Form.svelte";
   import Input from "./Input.svelte";
   //   import placeholder from "./Input.svelte";
   import Select from "./Select.svelte";
   import Button from "./Button.svelte";
-  import UploadWidget from "../UploadWidget.svelte";
+  // import UploadWidget from "../UploadWidget.svelte";
+
+  // console.log(image);
 
   //   file input
-  let files;
+  // let files;
 
-  $: if (files) {
-    // Note that `files` is of type `FileList`, not an Array:
-    // https://developer.mozilla.org/en-US/docs/Web/API/FileList
-    console.log(files);
+  // $: if (files) {
+  //   // Note that `files` is of type `FileList`, not an Array:
+  //   // https://developer.mozilla.org/en-US/docs/Web/API/FileList
+  // //   console.log(files);
 
-    for (const file of files) {
-      console.log(`${file.name}: ${file.size} bytes`);
-    }
-  }
+  // //   for (const file of files) {
+  // //     console.log(`${file.name}: ${file.size} bytes`);
+  // //   }
+  // // }
 
   export let data = {};
   export let onSubmit = () => {};
@@ -42,9 +88,9 @@
     type,
     km,
     city,
-    img,
+    image,
   };
-
+  console.log(result);
   $: errors = validate(touchedFields, result);
 
   const validate = () => {
@@ -95,7 +141,7 @@
       type="text"
       placeholder="mahindra"
       label="Manufacturer"
-      bind:value={name}
+      bind:value={brand}
       on:blur={() => (touchedFields.name = true)}
       error={errors.name}
     />
@@ -149,7 +195,9 @@
       error={errors.name}
     />
     <label for="avatar">Upload a picture:</label>
-    <UploadWidget />
+    <button on:click|preventDefault={handleClick}> Upload an image </button>
+
+    <!-- <UploadWidget /> -->
     <!-- <input
       accept="image/png, image/jpeg"
       bind:files

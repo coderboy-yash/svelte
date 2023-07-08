@@ -1,6 +1,8 @@
 <script>
   // form data
   import Form from "./Form.svelte";
+  // import { subscribe } from "../store/cart.js";
+  import { onMount } from "svelte";
 
   let data1 = { name: "", length: 12, type: "refubrished" };
   let submittedData = null;
@@ -13,36 +15,71 @@
 
   let showModal = false;
 
-  const brandArray = data.map((car) => car.brand);
-  const brands = [...new Set(brandArray)];
+  console.log(data);
+
+  let brands = [];
+  const unsubscribe = data.subscribe(
+    (items) => (brands = [...new Set(items.map((car) => car.brand))])
+  );
+
   let inputValue = "";
-  let getBrand = "";
-
-  function handleInput(event) {
-    inputValue = event.target.value;
-    // console.log(inputValue);
+  let getBrand = [];
+  $: console.log(getBrand.length);
+  function handleSubmit(submittedData) {
+    data.update((items) => {
+      return [
+        ...items,
+        {
+          id: items.length + 1,
+          name: submittedData.name,
+          brand: submittedData.brand,
+          price: submittedData.price,
+          year: submittedData.year,
+          type: submittedData.type,
+          km: submittedData.km,
+          city: submittedData.city,
+          img: submittedData.img,
+        },
+      ];
+    });
   }
-  function handleClick(name) {
-    getBrand = brands.filter((brand) =>
-      brand.toLowerCase().includes(name.toLowerCase())
-    );
-    // brands = getBrand;
 
-    // inputValue = "";
-    // console.log(getBrand);
+  // function handleClick() {
+  //   console.log("fdgdg", inputValue);
+  //   getBrand = brands.filter((brand) => {
+  //     console.log(inputValue);
+  //     if (inputValue === "") {
+  //       return false;
+  //     }
+
+  //     brand.toLowerCase().includes(inputValue.toLowerCase());
+  //   });
+  //   console.log(brands, getBrand);
+  // }
+
+  $: getBrand =
+    inputValue === ""
+      ? []
+      : brands.filter((brand) =>
+          brand.toLowerCase().includes(inputValue.toLowerCase())
+        );
+
+  // $: handleClick(), inputValue;
+
+  function cleanup() {
+    unsubscribe();
   }
 </script>
 
 <div
   style=""
-  class="sticky top-32 h-[calc(100vh-128px)] w-52 overflow-auto overflow-x-hidden border-b-8 border-yellow-200"
+  class="sticky top-32 z-30 h-[calc(100vh-128px)] w-52 overflow-auto overflow-x-hidden border-b-8 border-yellow-200"
 >
   <div class="  my-3 flex text-white">
     <input
       type="text"
       placeholder="search your brand"
       class="w-36 border-2 border-yellow-400 p-2 text-black outline-none"
-      on:input={handleInput}
       bind:value={inputValue}
     />
     <button
@@ -50,7 +87,6 @@
         src={search}
         class="h-11 w-8 rounded-r-lg border-4 border-yellow-500"
         alt=""
-        onclick={handleClick(inputValue)}
       /></button
     >
   </div>
@@ -61,11 +97,9 @@
     <p>no brand matched</p>
   {/if} -->
   {#if getBrand.length > 0}
-    <div class="">
-      {#each getBrand as brand}
-        <SidebarCard {brand} />
-      {/each}
-    </div>
+    {#each getBrand as brand}
+      <SidebarCard {brand} />
+    {/each}
   {:else}
     {#each brands as brand}
       <SidebarCard {brand} />
@@ -85,14 +119,36 @@
   <!-- <Modal bind:showModal>
     <Form data={data1} onSubmit={(data) => (submittedData = data)} />
   </Modal> -->
-  <Modal title="Add Manufacturer" bind:open={showModal}>
-    <Form data={data1} onSubmit={(data) => (submittedData = data)} />
+  <Modal title="Add Manufacturer" bind:open={showModal} class="z-50">
+    <Form
+      data={data1}
+      onSubmit={(result) => {
+        console.log(result);
+        data.update((old) => [
+          ...old,
+          {
+            id: result.length + 1,
+            name: result.name,
+            brand: result.brand,
+            price: result.price,
+            year: result.year,
+            type: result.type,
+            km: result.km,
+            city: result.city,
+            img: result.image,
+          },
+        ]);
+        console.log(data, getBrand.length);
+      }}
+    />
+
     <svelte:fragment slot="footer" />
   </Modal>
 </div>
 
 <style>
   /* Customize the scrollbar track */
+
   ::-webkit-scrollbar {
     width: 8px;
     background-color: #f1f1f1; /* Set the background color of the scrollbar track */

@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 
-export const data = [
+export const data = writable([
   {
     id: 1,
     name: "Swift",
@@ -554,7 +554,7 @@ export const data = [
     city: "Kolkata",
     img: "https://imgd.aeplcdn.com/370x208/n/cw/ec/48067/s-class-exterior-right-front-three-quarter-3.jpeg?q=75",
   },
-];
+]);
 export const brand = writable("");
 export const activeBrand = (getBrand) => {
   // console.log(getBrand);

@@ -1,11 +1,13 @@
 <script>
-  import { env } from "$env/dynamic/public";
   import { onMount } from "svelte";
 
+  export let image = "hello";
   let widget;
 
   export let onUpload = (error, result, widget) => {
-    console.log("upload done", error, result, widget);
+    console.log("result", result.info.secure_url, "widget", widget);
+    return result.info.secure_url;
+    image = result.info.secure_url;
   };
 
   const cldOptions = {
