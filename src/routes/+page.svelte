@@ -1,9 +1,12 @@
 <script>
   import Sidebar from "../lib/components/sidebar/Sidebar.svelte";
   import Content from "../lib/components/content/Content.svelte";
+  import Hamburger from "../lib/components/Hamburger.svelte";
+  let open = false;
 </script>
 
 <div class="flex">
-  <Sidebar />
+  <Sidebar bind:open />
+  <Hamburger bind:open />
   <Content />
 </div>

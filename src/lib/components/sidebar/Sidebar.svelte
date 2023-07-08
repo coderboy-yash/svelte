@@ -1,6 +1,7 @@
 <script>
   // form data
   import Form from "./Form.svelte";
+
   // import { subscribe } from "../store/cart.js";
   import { onMount } from "svelte";
 
@@ -18,6 +19,7 @@
   console.log(data);
 
   let brands = [];
+  ``;
   const unsubscribe = data.subscribe(
     (items) => (brands = [...new Set(items.map((car) => car.brand))])
   );
@@ -69,12 +71,10 @@
   function cleanup() {
     unsubscribe();
   }
+  export let open = false;
 </script>
 
-<div
-  style=""
-  class="sticky top-32 z-30 h-[calc(100vh-128px)] w-52 overflow-auto overflow-x-hidden border-b-8 border-yellow-200"
->
+<aside class:open class=" absolute h-screen w-[15%] bg-[#363740]">
   <div class="  my-3 flex text-white">
     <input
       type="text"
@@ -144,7 +144,7 @@
 
     <svelte:fragment slot="footer" />
   </Modal>
-</div>
+</aside>
 
 <style>
   /* Customize the scrollbar track */
@@ -157,5 +157,14 @@
   /* Customize the scrollbar thumb */
   ::-webkit-scrollbar-thumb {
     background-color: #ecf391; /* Set the color of the scrollbar thumb */
+  }
+  aside {
+    z-index: 20;
+    left: -100%;
+    transition: left 0.3s ease-in-out;
+  }
+
+  .open {
+    left: 0;
   }
 </style>
